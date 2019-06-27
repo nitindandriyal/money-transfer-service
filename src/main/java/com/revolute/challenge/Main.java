@@ -8,6 +8,6 @@ import com.revolute.challenge.web.MoneyTransferServiceImpl;
 public class Main {
 		public static void main(String[] args) {
 			MoneyTransferService moneyTransferService = new MoneyTransferServiceImpl();
-			Endpoint.publish("http://localhost:9999/ws/atm", moneyTransferService);
+			Endpoint.publish("http://localhost:9999/ws/transfer", moneyTransferService);
 		}
 }

@@ -5,6 +5,7 @@ import javax.jws.WebService;
 import com.revolute.challenge.datastore.Ledger;
 import com.revolute.challenge.datastore.LedgerImpl;
 import com.revolute.challenge.exceptions.InsufficientFundsException;
+import com.revolute.challenge.exceptions.InvalidAccountException;
 import com.revolute.challenge.model.Account;
 
 @WebService(endpointInterface = "com.revolute.challenge.web.MoneyTransferService")
@@ -15,7 +16,8 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
 	private final Ledger ledger = new LedgerImpl();
 
 	@Override
-	public boolean transfer(long fromAccountId, long toAccountId, double amount) throws InsufficientFundsException {
+	public boolean transfer(long fromAccountId, long toAccountId, double amount)
+			throws InsufficientFundsException, InvalidAccountException {
 		Account fromAccount = ledger.lookup(fromAccountId);
 		Account toAccount = ledger.lookup(toAccountId);
 		int fromHash = System.identityHashCode(fromAccount);
